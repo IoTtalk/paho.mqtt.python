@@ -1958,8 +1958,7 @@ class Client(object):
         if callback is None or sub is None:
             raise ValueError("sub and callback must both be defined.")
 
-        with self._callback_mutex:
-            self._on_message_filtered[sub] = callback
+        self._on_message_filtered[sub] = callback
 
     def message_callback_remove(self, sub):
         """Remove a message callback previously registered with
@@ -1967,11 +1966,10 @@ class Client(object):
         if sub is None:
             raise ValueError("sub must defined.")
 
-        with self._callback_mutex:
-            try:
-                del self._on_message_filtered[sub]
-            except KeyError:  # no such subscription
-                pass
+        try:
+            del self._on_message_filtered[sub]
+        except KeyError:  # no such subscription
+            pass
 
     # ============================================================
     # Private functions
