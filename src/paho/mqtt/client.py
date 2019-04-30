@@ -1939,6 +1939,8 @@ class Client(object):
         if not self._sock or self._registered_write:
             return
         self._registered_write = True
+        return # ib: ignore this callback, seems _callback_mutex is problematic
+
         with self._callback_mutex:
             if self.on_socket_register_write:
                 try:
@@ -1973,6 +1975,7 @@ class Client(object):
         if not sock or not self._registered_write:
             return
         self._registered_write = False
+        return # ib: ignore this callback, seems _callback_mutex is problematic
 
         with self._callback_mutex:
             if self.on_socket_unregister_write:
