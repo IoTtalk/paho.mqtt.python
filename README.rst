@@ -1459,3 +1459,12 @@ Discussion of the Paho clients takes place on the `Eclipse paho-dev mailing list
 General questions about the MQTT protocol itself (not this library) are discussed in the `MQTT Google Group <https://groups.google.com/forum/?fromgroups#!forum/mqtt>`_.
 
 There is much more information available via the `MQTT community site <http://mqtt.org/>`_.
+
+Release Process
+----------------
+
+::
+
+    git checkout ib/1.4
+    python setup.py bdist_wheel
+    twine upload dist/*
