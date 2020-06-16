@@ -1468,7 +1468,7 @@ Release Process
     # get in a Python 3 venv
     git checkout ib/1.4
     python setup.py bdist_wheel
+    twine upload dist/*
 
     # then get in a Python 2 venv
     # and release it
-    twine upload dist/*
