@@ -1240,10 +1240,10 @@ class Client(object):
         Must be called before connect() to have any effect.
         Requires a broker that supports MQTT v3.1.
 
-        username: The username to authenticate with. Need have no relationship to the client id. Must be unicode    
+        username: The username to authenticate with. Need have no relationship to the client id. Must be unicode
             [MQTT-3.1.3-11].
             Set to None to reset client back to not using username/password for broker authentication.
-        password: The password to authenticate with. Optional, set to None if not required. If it is unicode, then it 
+        password: The password to authenticate with. Optional, set to None if not required. If it is unicode, then it
             will be encoded as UTF-8.
         """
 
@@ -2937,7 +2937,10 @@ class Client(object):
             if topic is not None:
                 for callback in self._on_message_filtered.iter_match(message.topic):
                     with self._in_callback_mutex:
-                        callback(self, self._userdata, message)
+                        try:
+                            callback(self, self._userdata, message)
+                        except Exception as err:
+                            self._easy_log(MQTT_LOG_ERR, 'Caught exception in on_message: %s', err)
                     matched = True
 
             if matched == False and self.on_message:
