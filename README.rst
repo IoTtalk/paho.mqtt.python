@@ -1470,7 +1470,7 @@ Release Process
 ::
 
     # get in a Python 3 venv
-    git checkout ib/1.4
+    git checkout ib/1.5
     python setup.py bdist_wheel
     twine upload dist/*
 
