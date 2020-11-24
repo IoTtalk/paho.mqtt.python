@@ -20,7 +20,7 @@ if sys.version_info < (3, 0):
     test_requirements += ['mock']
 
 setup(
-    name='paho-mqtt',
+    name='iottalk-paho-mqtt',
     version=__version__,
     description='MQTT version 5.0/3.1.1 client class',
     long_description=readme,
